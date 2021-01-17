@@ -500,3 +500,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 .vscode/
+
+venv1/
+
+venv2/
