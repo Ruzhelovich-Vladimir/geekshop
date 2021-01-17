@@ -6,6 +6,9 @@ from django.contrib import auth
 from django.urls import reverse
 
 from authapp.forms import ShopUserEditForm
+from authapp.models import ShopUser
+
+from django.utils.timezone import now
 
 
 def send_verify_mail(user):
@@ -20,8 +23,23 @@ def send_verify_mail(user):
     return send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
 
 
-def verify(request, email, actitation_key):
-    pass
+def verify(request, email, activation_key):
+
+    try:
+        user = ShopUser.objects.get(email=email)
+        if user.activation_key == activation_key and not user.is_activation_key_expired():
+            user.is_active = True
+            user.activation_key = None
+            # Думаю при обнулении ключа лучше и сроки сдвинуть до текущего момента
+            user.activation_key_expires = now()
+            user.save()
+            auth.login(request, user)
+            return render(request, 'authapp/verification.html')
+        else:
+            print(f'ошибка активации пользователя: {user}')
+            return render(request, 'authapp/verification.html')
+    except Exception as ex:
+        return HttpResponseRedirect(reverse('main'))
 
 
 def login(request):

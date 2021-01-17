@@ -9,7 +9,7 @@ class ShopUser(AbstractUser):
     avatar = models.ImageField(upload_to='users_avatars', blank=True)
     age = models.PositiveIntegerField(verbose_name='возраст')
 
-    activation_key = models.CharField(max_length=128, blank=True)
+    activation_key = models.CharField(max_length=128, blank=True, null=True)
     activation_key_expires = models.DateTimeField(
         default=(now() + timedelta(hours=48)))
 
