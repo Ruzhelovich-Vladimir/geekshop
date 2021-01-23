@@ -12,7 +12,10 @@ urlpatterns = [
     path('basket/', include('basketapp.urls', namespace='basket')),
 
     path('admin/', include('adminapp.urls', namespace='admin')),
+
+    path('', include('social_django.urls', namespace='social'))
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
