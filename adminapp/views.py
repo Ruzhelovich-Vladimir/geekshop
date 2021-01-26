@@ -1,3 +1,4 @@
+from ordersapp.models import Order
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import HttpResponseRedirect, get_object_or_404, render
 from django.urls import reverse, reverse_lazy
@@ -44,7 +45,8 @@ def user_update(request, pk):
 
     edit_user = get_object_or_404(ShopUser, pk=pk)
     if request.method == 'POST':
-        edit_form = ShopUserAdminEditForm(request.POST, request.FILES, instance=edit_user)
+        edit_form = ShopUserAdminEditForm(
+            request.POST, request.FILES, instance=edit_user)
         if edit_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('admin:user_update', args=[edit_user.pk]))
@@ -154,7 +156,8 @@ def product_create(request, pk):
         # задаем начальное значение категории в форме
         product_form = ProductEditForm(initial={'category': category})
 
-    content = {'title': title, 'update_form': product_form, 'category': category}
+    content = {'title': title,
+               'update_form': product_form, 'category': category}
 
     return render(request, 'adminapp/product_update.html', content)
 
@@ -165,14 +168,16 @@ def product_update(request, pk):
     edit_product = get_object_or_404(Product, pk=pk)
 
     if request.method == 'POST':
-        edit_form = ProductEditForm(request.POST, request.FILES, instance=edit_product)
+        edit_form = ProductEditForm(
+            request.POST, request.FILES, instance=edit_product)
         if edit_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('admin:product_update', args=[edit_product.pk]))
     else:
         edit_form = ProductEditForm(instance=edit_product)
 
-    content = {'title': title, 'update_form': edit_form, 'category': edit_product.category}
+    content = {'title': title, 'update_form': edit_form,
+               'category': edit_product.category}
 
     return render(request, 'adminapp/product_update.html', content)
 
@@ -193,3 +198,14 @@ def product_delete(request, pk):
     }
 
     return render(request, 'adminapp/product_delete.html', content)
+
+
+class AdminOrdersList(ListView):
+    model = Order
+
+    # def get_queryset(self):
+    #     # Получаем все заказы с активным статусом
+    #     active_status = [Order.FORMING, Order.SENT_TO_PROCEED,
+    #                      Order.PROCESEED, Order.PROCESEED, Order.READY]
+    #     return Order.objects.all()  # filter(status__in=active_status)
+    # ПОЧЕМУ ТО ТОЖЕ НЕ РАБОТАЕТ, БУДУ РАЗБИРАТЬСЯ
