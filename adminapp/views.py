@@ -202,6 +202,7 @@ def product_delete(request, pk):
 
 class AdminOrdersList(ListView):
     model = Order
+    template_name = 'adminapp/admin_orders_list.html'
 
     # def get_queryset(self):
     #     # Получаем все заказы с активным статусом
