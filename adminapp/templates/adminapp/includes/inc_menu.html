@@ -6,9 +6,15 @@
         </a>
     </li>
     <li>
-        <a href="{% url 'admin:categories' %}" 
-        class="{% if request.resolver_match.url_name == 'categories' or category.name %}active{% endif %}">
+        <a href="{% url 'admin:categories' %}"
+            class="{% if request.resolver_match.url_name == 'categories' or category.name %}active{% endif %}">
             категории{% if category %}:<span>{{ category.name }}</span>{% endif %}
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'admin:admin_orders_list' %}"
+            class="{% if request.resolver_match.url_name == 'orders' or order.created_at %}active{% endif %}">
+            заказы{% if order %}:<span>{{ order.created_at }}</span>{% endif %}
         </a>
     </li>
 </ul>
