@@ -2,7 +2,7 @@ import mainapp.views as mainapp
 from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, re_path
 
 urlpatterns = [
     path('', mainapp.main, name='main'),
@@ -18,5 +18,10 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+   import debug_toolbar
+   urlpatterns += [re_path(r'^__debug__/', include(debug_toolbar.urls))]
+
+if settings.DEBUG:
+    import debug_toolbar
+
+    urlpatterns += [re_path(r'^__debug__/', include(debug_toolbar.urls))]
