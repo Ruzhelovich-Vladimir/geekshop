@@ -24,7 +24,7 @@ class OrderList(ListView):
 
     def get_queryset(self):
         # Пользователь видет только свои заказы
-        return Order.object.filter(user=self.request.user)
+        return Order.object.filter(user=self.request.user).select_related()
 
 
 class OrderCreate(CreateView):
