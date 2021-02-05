@@ -1,0 +1,87 @@
+ЗАМЕР №1
+(env) root@194-67-113-27:/home/django/geekshop# siege -f /home/django/geekshop/urls.txt -d0 -r5 -c10
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+Transactions:		         610 hits
+Availability:		      100.00 %
+Elapsed time:		        5.03 secs
+Data transferred:	       25.48 MB
+Response time:		        0.08 secs
+Transaction rate:	      121.27 trans/sec
+Throughput:		        5.07 MB/sec
+Concurrency:		        9.24
+Successful transactions:         610
+Failed transactions:	           0
+Longest transaction:	        1.16
+Shortest transaction:	        0.00
+ЗАМЕР №2 
+(env) root@194-67-113-27:/home/django/geekshop# siege -f /home/django/geekshop/urls.txt -d0 -r5 -c10 >siene.log
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+Transactions:		         610 hits
+Availability:		      100.00 %
+Elapsed time:		        4.95 secs
+Data transferred:	       25.48 MB
+Response time:		        0.07 secs
+Transaction rate:	      123.23 trans/sec
+Throughput:		        5.15 MB/sec
+Concurrency:		        9.23
+Successful transactions:         610
+Failed transactions:	           0
+Longest transaction:	        1.15
+Shortest transaction:	        0.00
+ЗАМЕР №3
+(env) root@194-67-113-27:/home/django/geekshop# siege -f /home/django/geekshop/urls.txt -d0 -r5 -c10
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+Transactions:		         610 hits
+Availability:		      100.00 %
+Elapsed time:		        5.39 secs
+Data transferred:	       25.48 MB
+Response time:		        0.08 secs
+Transaction rate:	      113.17 trans/sec
+Throughput:		        4.73 MB/sec
+Concurrency:		        9.31
+Successful transactions:         610
+Failed transactions:	           0
+Longest transaction:	        1.46
+Shortest transaction:	        0.00
+ЗАМЕР №4 
+(env) root@194-67-113-27:/home/django/geekshop# siege -f /home/django/geekshop/urls.txt -d0 -r5 -c10
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+Transactions:		         610 hits
+Availability:		      100.00 %
+Elapsed time:		        5.30 secs
+Data transferred:	       25.48 MB
+Response time:		        0.08 secs
+Transaction rate:	      115.09 trans/sec
+Throughput:		        4.81 MB/sec
+Concurrency:		        9.31
+Successful transactions:         610
+Failed transactions:	           0
+Longest transaction:	        1.49
+Shortest transaction:	        0.00
+
+ЗАМЕР №5 
+(env) root@194-67-113-27:/home/django/geekshop# siege -f /home/django/geekshop/urls.txt -d0 -r5 -c10
+** SIEGE 4.0.4
+** Preparing 10 concurrent users for battle.
+The server is now under siege...
+Transactions:		         610 hits
+Availability:		      100.00 %
+Elapsed time:		        5.40 secs
+Data transferred:	       25.48 MB
+Response time:		        0.08 secs
+Transaction rate:	      112.96 trans/sec
+Throughput:		        4.72 MB/sec
+Concurrency:		        9.32
+Successful transactions:         610
+Failed transactions:	           0
+Longest transaction:	        1.51
+Shortest transaction:	        0.00
+
