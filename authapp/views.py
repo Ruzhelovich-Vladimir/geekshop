@@ -4,6 +4,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from authapp.forms import ShopUserLoginForm, ShopUserProfileEditForm, ShopUserRegisterForm
 from django.contrib import auth
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from authapp.forms import ShopUserEditForm
 from authapp.models import ShopUser
@@ -42,6 +43,7 @@ def verify(request, email, activation_key):
         return HttpResponseRedirect(reverse('main'))
 
 
+# @csrf_exempt
 def login(request):
     title = 'вход'
 
