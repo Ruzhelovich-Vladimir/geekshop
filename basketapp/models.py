@@ -64,7 +64,7 @@ class Basket(models.Model):
 
     @staticmethod
     def get_items(self, user):
-        return Basket.objects.filter(user=user).order_by('product__category')
+        return Basket.objects.filter(user=user).order_by('product__category').select_related()
 
     @staticmethod
     def get_product(self, user, product):
