@@ -1,5 +1,11 @@
+wheel
 psycopg2-binary
 pillow
 django<3.0
 social_auth_app_django
 requests
+django-debug-toolbar
+django-debug-toolbar-template-profiler
+django-extensions
+pydotplus
+graphviz

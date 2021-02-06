@@ -1,0 +1,17 @@
+http://194.67.113.27/ POST username=admin&password=Zaqmko321
+#http://194.67.113.27/products/
+#http://194.67.113.27/contact/
+#http://194.67.113.27/products/category/0/
+#http://194.67.113.27/products/category/1/
+#http://194.67.113.27/products/category/2/
+#http://194.67.113.27/products/category/3/
+#http://194.67.113.27/products/category/4/
+http://194.67.113.27/basket/
+#http://194.67.113.27/order/
+#http://194.67.113.27/auth/edit/
+#http://194.67.113.27/order/update/5/
+#http://194.67.113.27/order/update/6/
+#http://194.67.113.27/order/update/7/
+#http://194.67.113.27/order/update/8/
+#http://194.67.113.27/order/update/9/
+#http://194.67.113.27/order/update/10/
