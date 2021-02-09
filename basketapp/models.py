@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
 from mainapp.models import Product
-
+from authapp.models import ShopUser
+from django.utils.functional import cached_property
 
 class BasketQuerySet(models.QuerySet):
     """Обработчик для QuerySet
@@ -11,9 +12,9 @@ class BasketQuerySet(models.QuerySet):
         """
         Переопределяем метод delete
         """
-        for object in self:
-            object.product.quantity += object.quantity
-            object.product.save()
+        for _object in self:
+            _object.product.quantity += _object.quantity
+            _object.product.save()
         super(BasketQuerySet, self).delete(*args, **kwargs)
 
 
@@ -40,6 +41,10 @@ class Basket(models.Model):
     #     self.product.save()
     #     super().save()
 
+    @cached_property
+    def get_items_cached(self):
+        return self.user.basket.select_related()
+
     def _get_product_cost(self):
         "return cost of all products this type"
         return self.product.price * self.quantity
@@ -49,6 +54,7 @@ class Basket(models.Model):
     def _get_total_quantity(self):
         "return total quantity for user"
         _items = Basket.objects.filter(user=self.user)
+        # _item = self.get_items_cached
         _totalquantity = sum(list(map(lambda x: x.quantity, _items)))
         return _totalquantity
 
@@ -57,6 +63,7 @@ class Basket(models.Model):
     def _get_total_cost(self):
         "return total cost for user"
         _items = Basket.objects.filter(user=self.user)
+        # _item = self.get_items_cached
         _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
         return _totalcost
 
