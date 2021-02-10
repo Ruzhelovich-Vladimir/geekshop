@@ -4,6 +4,7 @@ from mainapp.models import Product
 from authapp.models import ShopUser
 from django.utils.functional import cached_property
 
+
 class BasketQuerySet(models.QuerySet):
     """Обработчик для QuerySet
     """
@@ -22,7 +23,7 @@ class Basket(models.Model):
     objects = BasketQuerySet.as_manager()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE, related_name='basket')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(
         verbose_name='количество', default=0)
@@ -53,8 +54,8 @@ class Basket(models.Model):
 
     def _get_total_quantity(self):
         "return total quantity for user"
-        _items = Basket.objects.filter(user=self.user)
-        # _item = self.get_items_cached
+        # _items = Basket.objects.filter(user=self.user)
+        _items = self.get_items_cached
         _totalquantity = sum(list(map(lambda x: x.quantity, _items)))
         return _totalquantity
 
@@ -62,8 +63,8 @@ class Basket(models.Model):
 
     def _get_total_cost(self):
         "return total cost for user"
-        _items = Basket.objects.filter(user=self.user)
-        # _item = self.get_items_cached
+        # _items = Basket.objects.filter(user=self.user)
+        _items = self.get_items_cached
         _totalcost = sum(list(map(lambda x: x.product_cost, _items)))
         return _totalcost
 
