@@ -9,6 +9,8 @@ from mainapp.models import ProductCategory, Product
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from django.views.decorators.cache import cache_page
+
 JSON_PATH = 'mainapp/json'
 ##########################################################
 
@@ -127,6 +129,7 @@ def main(request):
     return render(request, 'mainapp/index.html', content)
 
 
+@cache_page(3600)
 def products(request, pk=None, page=1):
     title = 'продукты'
     # links_menu = ProductCategory.objects.filter(is_active=True)
