@@ -509,3 +509,8 @@ venv2/
 vk.json
 
 media/users_avatars/
+
+geekshop/settings.py
+
+*.log
+*.txt
