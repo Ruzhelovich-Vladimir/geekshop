@@ -71,11 +71,11 @@ class Basket(models.Model):
     total_cost = property(_get_total_cost)
 
     @staticmethod
-    def get_items(self, user):
+    def get_items(user):
         return Basket.objects.filter(user=user).order_by('product__category').select_related()
 
     @staticmethod
-    def get_product(self, user, product):
+    def get_product(user, product):
         return Basket.objects.filter(user=user, product=product)
 
     @classmethod
