@@ -51,13 +51,13 @@ class TestUserAuthTestCase(TestCase):
         self.assertTrue(response.context['user'].is_anonymous)
 
         new_user_data = {
-            'username': 'test10',
+            'username': 'test11',
             'first_name': 'test',
-            'last_name': 'test',
             'password1': 'Zaqmko321',
             'password2': 'Zaqmko321',
             'email': 'test@localhost',
-            'age': '45'}
+            'age': 18
+        }
 
         response = self.client.post('/auth/register/', data=new_user_data)
         self.assertEqual(response.status_code, 302)
